@@ -4,4 +4,4 @@ echo "toto";
 
 echo "blabla";
 
-echo "hello";
+echo "SALUT";
