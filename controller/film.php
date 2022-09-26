@@ -5,6 +5,7 @@
 
 $filmsDAO = new FilmsDAO();
 $allfilms = $filmsDAO->getAll();
+
 // print_r($allfilms);
 foreach ($allfilms as $value) {
     if (!isset($_POST['titre'])) {
