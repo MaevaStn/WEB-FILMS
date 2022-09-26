@@ -2,7 +2,7 @@
 
 class UsersDAO extends Dao
 {
-    public function getAll()
+    /*public function getAll()
     {
         //On définit la bdd pour la fonction
 
@@ -14,12 +14,11 @@ class UsersDAO extends Dao
             $userInfo[] = new User($data['idUser'], $data['userName'], $data['email'], $data['password']);
         }
         return ($userInfo);
-    }
+    }*/
 
     //Ajouter un utilisateur
     public function add($data)
     {
-
         $valeurs = ['userName' => $data->get_name(), 'email' => $data->get_email(), 'password' => $data->get_password()];
         $requete = 'INSERT INTO user (name, email, password) VALUES (:name , :email, :password)';
         $insert = $this->_bdd->prepare($requete);
@@ -31,16 +30,21 @@ class UsersDAO extends Dao
         }
     }
 
-    public function getOne($id_offer)
+    /*public function getOne($id_offer)
     {
-
         $query = $this->_bdd->prepare('SELECT * FROM offers WHERE offers.id = :id_offer')->fetch(PDO::FETCH_ASSOC);
         $query->execute(array(':id_offer' => $id_offer));
         $data = $query->fetch();
         $offer = new Offres($data['id'], $data['title'], $data['description']);
         return ($offer);
-    }
+    }*/
 
+    public function compte()
+    {
+        if ($_POST['compte']) {
+            header("location:user.php");
+        }
+    }
 
     public function connexion()
     {
@@ -86,11 +90,20 @@ class UsersDAO extends Dao
 
         if (isset($_SESSION["mail"])) {
             echo "Hello " . $_SESSION['mail'];
-            header("location:film.php");
+            //header("location:film.html.twig");
         }
     }
 
-    /*if (isset($_SESSION["id_pers"])) {
-            header("Location:login.php");
+    public function deconnexion()
+    {
+        if (isset($POST_['logout'])) {
+            echo "deconnecté";
+            session_destroy();
+            //header("location:index.php");            
+        }
+        /*if (session_destroy()) {
+            //header("location:index.php");
+            echo "vous êtes déconnecté";
         }*/
+    }
 }

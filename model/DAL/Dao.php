@@ -29,11 +29,11 @@ abstract class Dao
         }
     }
 
-//Récupérer toutes les items
-    abstract public function getAll();
+    //Récupérer toutes les items
+    //abstract public function getAll();
 
     //Récupérer plus d'info sur 1 item à l'aide de son id
-    abstract public function getOne($id);
+    //abstract public function getOne($id);
 
     //Ajouter un item
     abstract public function add($data);
@@ -42,5 +42,4 @@ abstract class Dao
     {
         $this->_bdd = $_bdd;
     }
-
 }
