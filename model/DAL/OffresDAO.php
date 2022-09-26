@@ -11,7 +11,7 @@
  *
  * @author 1703728
  */
-class OffresDAO extends Dao
+/*class OffresDAO extends Dao
 {
 
 //Récupérer toutes les offres
@@ -56,4 +56,4 @@ class OffresDAO extends Dao
         return ($offer);
     }
 
-}
+}*/
