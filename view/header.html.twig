@@ -39,26 +39,35 @@
 
 		</header>
 		<main>
+			<h1>Rechercher un Film</h1>
+			<div>
+				<p>Saisir un mot du titre</p>
+			</div>
+			<nav class="navbar navbar-light bg-light">
+				<form action='film' method='POST'>
+					<input name='search' type=" search" placeholder=" Search" aria-label=" search">
+					<input type="submit" name='Rechercher' value='Rechercher'></nav>
 
-			<h1 class="col-3 mt-5 mb-5 m-auto">Connexion</h1>
-			<form action="user" method="POST">
-				<div class="col-3 text-center mb-3 m-auto">
-					<label for="exampleInputEmail1" class="form-label">Email address</label>
-					<input type="email" class="form-control" id="exampleInputEmail1" name="mail" value="{{user.get_email}}">
+				<h1 class="col-3 mt-5 mb-5 m-auto">Connexion</h1>
+				<form action="user" method="POST">
+					<div class="col-3 text-center mb-3 m-auto">
+						<label for="exampleInputEmail1" class="form-label">Email address</label>
+						<input type="email" class="form-control" id="exampleInputEmail1" name="mail" value="{{user.get_email}}">
+					</div>
+					<div class="col-3 text-center mb-3 m-auto">
+						<label for="exampleInputPassword1" class="form-label">Password</label>
+						<input type="password" class="form-control" name="pass" value="{{user.get_password}}">
+					</div>
+					<div class="col-3 m-auto mb-2">
+						<input type="checkbox" name="remember">
+						Remember me</input>
 				</div>
-				<div class="col-3 text-center mb-3 m-auto">
-					<label for="exampleInputPassword1" class="form-label">Password</label>
-					<input type="password" class="form-control" name="pass" value="{{user.get_password}}">
+				<div class="col-3 m-auto">
+					<button type="submit" class="btn btn-primary" name="form1">Connexion</button>
+					<a href="#">
+						Créer un compte</a>
 				</div>
-				<div class="col-3 m-auto mb-2">
-					<input type="checkbox" name="remember">
-					Remember me</input>
-			</div>
-			<div class="col-3 m-auto">
-				<button type="submit" class="btn btn-primary" name="form1">Connexion</button>
-				<a href="#">
-					Créer un compte</a>
-			</div>
+			</body>
 		</body>
 	</body>
 </html></form></body></html></body></html></main></body></html>

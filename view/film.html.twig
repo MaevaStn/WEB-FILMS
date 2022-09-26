@@ -1,4 +1,6 @@
-<nav class="navbar navbar-light bg-light">
-	<form action='creer_film' method='POST'>
-		<input class=" form-control mr-sm-2" name='search' type=" search" placeholder=" Search" aria-label=" search">
-		<input class="btn btn-outline-success my-2 my-sm-0" type="submit" name='Rechercher' value='Rechercher'></nav>
+{% for films in allfilms %}
+	<p>{{films.get_title}}
+		({{films.get_annee}})<br><br>
+		<img src={{films.get_affiche}}>
+	</p><br>
+{% endfor %}
