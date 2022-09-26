@@ -7,8 +7,8 @@
  */
 
 //On appelle la fonction getAll()
-$acteursDao = new FilmsDAO();
+$rolesDao = new FilmsDAO();
 /* @var $alloffers type */
-$allacteurs = $acteursDao->getAll();
+$allroles = $rolesDao->getAll();
 //On affiche le template Twig correspondant
-echo $twig->render('acteur.html.twig', ['allacteurs' => $allacteurs]);
+echo $twig->render('role.html.twig', ['allroles' => $allroles]);
