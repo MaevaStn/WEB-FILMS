@@ -1,6 +1,20 @@
+<h1>Rechercher un Film</h1>
+<div>
+	<p>Saisir un mot du titre</p>
+</div>
+
+<form action='film' method='POST'>
+	<input name='search' type="text" placeholder=" Search">
+	<input type="submit" name='Rechercher' value='Rechercher'></form>
+
+
 {% for films in allfilms %}
-	<p>{{films.get_title}}
-		({{films.get_annee}})<br><br>
+	<p>
+		{{films.get_title}}
+		({{films.get_annee}})
+		<br><br>
 		<img src={{films.get_affiche}}>
-	</p><br>
+	</p>
+
+	<br>
 {% endfor %}
