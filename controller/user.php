@@ -17,6 +17,3 @@ $deconnexion = $userDao->deconnexion();
 echo $twig->render('user.html.twig', ['connexion' => $connexion]);
 
 //echo $twig->render('inscription.html.twig', ['inscription' => $inscription]);
- 
-
-//mettre if statement

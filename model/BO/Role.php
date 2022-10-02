@@ -1,9 +1,10 @@
 <?php
 
+// @author Elise
 
 class Role
 {
-    // acteur.php
+    // acteur.php ?
     private $actor;
     private $personnage;
     private $idRole;

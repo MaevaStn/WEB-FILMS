@@ -1,4 +1,5 @@
 <?php
+// @author Elise
 class Film
 {
     private $idFilm;
@@ -74,7 +75,13 @@ class Film
 
     public function set_affiche($affiche)
     {
-        $this->affiche = $affiche;
+
+        if ($affiche == null) {
+            // mettre img par défaut :
+            $this->affiche = "https://www.artmajeur.com/medias/standard/a/n/andriymarkivart/artwork/14233586_2aaaaaaaaaa.jpg";
+        } else {
+            $this->affiche = $affiche;
+        }
     }
 
     public function set_annee($annee)
@@ -88,14 +95,14 @@ class Film
     }
 
     //méthode pour ajouter un rôle :
-    //tabRoles, tableau de role(liste de rôle)et mon Role a un acteur
-    public function add(Role $roles)
+    //tabRoles, tableau de role(liste de rôle)
+    public function addRole(Role $roles)
     {
         $this->tabRoles[] = $roles;
     }
 
     // je récupére :
-    public function getRoles($roles = '')
+    public function getRole($roles = '')
     {
         foreach ($this->tabRoles as $key => $value) {
             if ($value->getnom() == $roles) {
