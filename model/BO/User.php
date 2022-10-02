@@ -2,66 +2,61 @@
 
 class User
 {
-    private $_id;
-    private $_name;
-    private $_email;
-    private $_password;
-    public $model;
+    private $idUser;
+    private $userName;
+    private $userMail;
+    private $userPass;
 
-    public function __construct($id = null, $name = null, $email = null, $password = null)
+    public function __construct($idUser = null, $userName = null, $userMail = null, $userPass = null)
     {
-        if (!is_null($id)) {
-            $this->set_id($id);
-        }
-        $this->set_name($name);
-        $this->set_email($email);
-        $this->set_password($password);
+        $this->idUser = $idUser;
+        $this->userName = $userName;
+        $this->userMail = $userMail;
+        $this->userPass = $userPass;
     }
 
-    public function get_name()
+    // GETTER //
+
+    public function get_idUser()
     {
-        return $this->_name;
+        return $this->idUser;
+    }
+
+    public function get_userName()
+    {
+        return $this->userName;
     }
 
     public function get_email()
     {
-        return $this->_email;
+        return $this->userMail;
     }
 
     public function get_password()
     {
-        return $this->_password;
+        return $this->userPass;
     }
 
-    public function set_name($_name)
+    // SETTER //
+
+    public function set_userName($userName)
     {
-        $this->_name = $_name;
+        $this->userName = $userName;
     }
 
-    public function set_email($_email)
+
+    public function set_email($userMail)
     {
-        $this->_email = $_email;
+        $this->userMail = $userMail;
     }
 
-    public function set_password($_password)
+    public function set_password($userPass)
     {
-        $this->_password = $_password;
+        $this->userPass = $userPass;
     }
 
-    /**
-     * Get the value of _id
-     */
-    public function get_id()
+    public function set_idUser($idUser)
     {
-        return $this->_id;
-    }
-
-    /**
-     * Set the value of _id
-     *
-     */
-    public function set_id($_id)
-    {
-        $this->_id = $_id;
+        $this->idUser = $idUser;
     }
 }

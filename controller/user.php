@@ -1,22 +1,39 @@
 <?php
-//On appelle la fonction getAll()
-$userDao = new UsersDAO();
-/* --@var $alloffers type */
-//$allusers = $userDao->getAll(); //changer allusers
-
-$connexion = $userDao->connexion();
-
-$deconnexion = $userDao->deconnexion();
-
-//$compte = $userDao->compte();
-
-//$inscription = $userDao->add($data);
-
-//On affiche le template Twig correspondant
-//echo $twig->render('user.html.twig', ['allusers' => $allusers]);
-echo $twig->render('user.html.twig', ['connexion' => $connexion]);
-
-//echo $twig->render('inscription.html.twig', ['inscription' => $inscription]);
- 
-
-//mettre if statement
+if (isset($_SESSION['mail'])) {
+    if (isset($_POST['logout'])) {
+        session_destroy();
+        header('location:user');
+    } else {
+        echo $twig->render('user.html.twig', ['status' => 'conected']);
+    }
+} else {
+    if (isset($_POST["mail"]) and isset($_POST["pass"])) {
+        $userDao = new UsersDAO();
+        $user = $userDao->get_user($_POST["mail"]);
+        if ($user != null) {
+            $userMail = $user->get_email();
+            $userPass = $user->get_password();
+            $userName = $user->get_userName();
+            $id = $user->get_idUser();
+            if (($userMail == $_POST["mail"]) && ($userPass == $_POST["pass"])) {
+                $_SESSION['mail'] = $userMail;
+                $_SESSION['userName'] = $userName;
+                $_SESSION['idUser'] = $id;
+                if (isset($_POST["remember"])) {
+                    setcookie("email", $mail);
+                }
+                header('location:user');
+            } else {
+                echo $twig->render('user.html.twig', ['pass' => 'true']);
+            }
+        } else {
+            echo $twig->render('user.html.twig', ['pass' => 'true']);
+        }
+    } else {
+        if (isset($_COOKIE["email"])) {
+            echo $twig->render('user.html.twig', ['mail' => $_COOKIE["email"]]);
+        } else {
+            echo $twig->render('user.html.twig');
+        }
+    }
+}

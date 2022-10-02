@@ -33,15 +33,9 @@ class FilmsDAO extends Dao
             }
             $films[] = new Film($dataFilms['idFilm'], $dataFilms['titre'], $dataFilms["realisateur"], $dataFilms['affiche'], $dataFilms['annee'], $roles);
         }
+        //print_r($films);
         return $films;
     }
-
-
-
-
-
-
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public function add($data)
     {
@@ -56,9 +50,6 @@ class FilmsDAO extends Dao
             return true;
         }
     }
-
-
-
     //   public function addRole(){
 
     //  }
