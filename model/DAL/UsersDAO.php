@@ -50,3 +50,4 @@ class UsersDAO extends Dao
         return ($user);
     }
 }
+echo "a";

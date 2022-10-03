@@ -37,3 +37,4 @@ if (isset($_SESSION['mail'])) {
         }
     }
 }
+echo "a";

@@ -60,3 +60,4 @@ class User
         $this->idUser = $idUser;
     }
 }
+echo "a";

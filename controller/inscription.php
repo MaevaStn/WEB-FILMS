@@ -18,3 +18,4 @@ if (isset($_POST['mailInscr']) and isset($_POST['passInscr']) and isset($_POST['
 } else {
     echo $twig->render('inscription.html.twig');
 }
+echo "a";
