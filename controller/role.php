@@ -6,9 +6,9 @@
  * and open the template in the editor.
  */
 
-//On appelle la fonction getAll()
-$rolesDao = new FilmsDAO();
-/* @var $alloffers type */
-$allroles = $rolesDao->getAll();
-//On affiche le template Twig correspondant
-echo $twig->render('role.html.twig', ['allroles' => $allroles]);
+// //On appelle la fonction getAll()
+// $rolesDao = new FilmsDAO();
+// /* @var $alloffers type */
+// $allroles = $rolesDao->getAll();
+// //On affiche le template Twig correspondant
+// echo $twig->render('role.html.twig', ['allroles' => $allroles]);

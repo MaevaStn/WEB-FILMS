@@ -51,6 +51,13 @@ class FilmsDAO extends Dao
             return true;
         }
     }
+
+
+
+
+    public function get_one($id)
+    {
+    }
 }
 
 
