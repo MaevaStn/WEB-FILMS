@@ -16,9 +16,23 @@ class FilmsDAO extends Dao
 
             $films[] = new Film($dataFilms['idFilm'], $dataFilms['titre'], $dataFilms["realisateur"], $dataFilms['affiche'], $dataFilms['annee']);
         }
+        //print_r($films);
         return $films;
     }
 
+    // En cours de tests/élaboration :
+    // public function getRoles(){    
+    // while ($dataFilms = $queryFilms->fetch()) {
+    //  $queryRoles = $this->_bdd->prepare("SELECT * FROM acteurs INNER JOIN role ON acteurs.idActeur = role.idRole");
+    // $queryRoles->execute();
+    // //  tableau roles :
+    // $roles = array();
+    //  while ($dataRoles = $queryRoles->fetch()) {
+
+    // $roles = new Role($dataRoles['personnage'], $dataRoles['idRole'].............;
+    //     }
+    // return $roles;
+    // }
 
 
 

@@ -33,6 +33,7 @@ abstract class Dao
     abstract public function getAll($recherche);
 
 
+
     //Récupérer plus d'info sur 1 item à l'aide de son id
     //abstract public function getOne($id);
 
