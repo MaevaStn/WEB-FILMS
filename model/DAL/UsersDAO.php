@@ -3,7 +3,7 @@
 class UsersDAO extends Dao
 {
     //obtenir infos des users
-    public function getAll()
+    public function getAll($recherche)
     {
         $query = $this->_bdd->prepare("SELECT idUser, userName, email, password FROM user");
         $query->execute();
@@ -28,7 +28,7 @@ class UsersDAO extends Dao
         }
     }
 
-    public function get_One($idUser)
+    public function get_one($idUser)
     {
         $query = $this->_bdd->prepare('SELECT * FROM user WHERE user.idUser = :idUser')->fetch(PDO::FETCH_ASSOC);
         $query->execute(array(':idUser' => $idUser));

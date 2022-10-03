@@ -30,12 +30,12 @@ abstract class Dao
     }
 
 
-    //abstract public function getAll($recherche);
+    abstract public function getAll($recherche);
 
 
 
     //Récupérer plus d'info sur 1 item à l'aide de son id
-    //abstract public function get_One($id);
+    //abstract public function get_one($id);
 
     //Ajouter un item
     abstract public function add($data);
