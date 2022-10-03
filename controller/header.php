@@ -4,4 +4,3 @@ if (isset($_SESSION['mail'])) {
 } else {
     echo $twig->render('header.html.twig', ['username' => 'Connexion']);
 }
-echo "a";

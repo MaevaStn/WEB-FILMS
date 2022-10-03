@@ -1,6 +1,60 @@
-{% for films in allfilms %}
-	<p>{{films.get_title}}
-		({{films.get_annee}})<br><br>
-		<img src={{films.get_affiche}}>
-	</p><br>
-{% endfor %}
+{# @author Elise #}
+{# Partie recherche film + affichage poster film, titre année :  Elise #}
+<link rel="stylesheet" href="view/web/css/film.css" media="screen"/> <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+<div id="film" class='container'>
+	<div class='row'>
+		<div class="col">
+			<h1>Rechercher un Film</h1>
+			<div>
+				<p>Saisir un mot du titre</p>
+			</div>
+
+			<form action='film' method='POST'>
+				<input name='search' type="text" id="search" placeholder=" Search">
+				<input type="submit" name='Rechercher' id='recherche' value='Rechercher'><br>
+
+
+				<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+					<div class="carousel-inner">
+
+						{% for films in allFilms %}
+							{% if loop.first %}
+								<div class="carousel-item active">
+									<div class="card-titre">
+										<h5 class="card-title">{{films.get_title}}
+											({{films.get_annee}})</h5><br>
+									</div>
+									<div class="card" style="width: 35rem;">
+										<img src={{films.get_affiche}} alt="poster"/></div>
+								</div>
+							{% else %}
+								<div class="carousel-item">
+									<div class="card-titre">
+										<h5 class="card-title">{{films.get_title}}
+											({{films.get_annee}})
+										</h5><br>
+									</div>
+									<div class="card" style="width: 35rem;">
+										<img src={{films.get_affiche}} alt="poster"/>
+									</div>
+								</div>
+
+							{% endif %}
+
+						{% endfor %}
+					</div>
+				</div>
+				<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+					<span class="btnPrec" aria-hidden="true">Previous</span>
+					<span class="visually-hidden"></span>
+				</button>
+
+				<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+					<span class="btnSuiv" aria-hidden="true">Next</span>
+					<spanclass="visually-hidden"></span>
+				</button>
+			</form>
+		</div>
+	</div>
+</div>

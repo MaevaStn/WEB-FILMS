@@ -28,7 +28,7 @@ class UsersDAO extends Dao
         }
     }
 
-    public function getOne($idUser)
+    public function get_One($idUser)
     {
         $query = $this->_bdd->prepare('SELECT * FROM user WHERE user.idUser = :idUser')->fetch(PDO::FETCH_ASSOC);
         $query->execute(array(':idUser' => $idUser));
@@ -50,4 +50,3 @@ class UsersDAO extends Dao
         return ($user);
     }
 }
-echo "a";
