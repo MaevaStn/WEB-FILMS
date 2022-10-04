@@ -1,55 +1,99 @@
-{# @author Elise #}
-{# Partie recherche film + affichage poster film, titre année :  Elise #}
-<link rel="stylesheet" href="view/web/css/film.css" media="screen"/> <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
 <div id="film" class='container'>
-	<div class='row'>
-		<div class="col">
+	<div class='row w-100 '>
+		<div class="col text-center mt-5 mb-3">
 			<h1>Rechercher un Film</h1>
 			<div>
 				<p>Saisir un mot du titre</p>
 			</div>
-
-			<form action='film' method='POST'>
-				<input name='search' type="text" id="search" placeholder=" Search">
-				<input type="submit" name='Rechercher' id='recherche' value='Rechercher'><br>
+			<form action='film' method='POST' class="d-flex justify-content-center">
+				<input name='search' type="text" id="search" placeholder=" Search" class="form-control w-25 me-1">
+				<input type="submit" name='Rechercher' id='recherche' value='Rechercher' class="btn btn-secondary"><br>
 			</form>
-			<div class="row"></div>
-
+		</div>
+	</div>
+</div>
+<div class="container my-3">
+	<div class="row">
+		<div class="col">
 			<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
 				<div class="carousel-inner">
-
-					{% for film in allFilms %}
-
-						{% for films in allFilms %}
-							{% if loop.first %}
-								<div class="carousel-item active">
-									<div class="card-titre">
-										<div class="row">
-											<h5 class="card-title">{{films.get_title}}
-												({{films.get_annee}})</h5><br>
+					{% for films in allFilms %}
+						{% if loop.first %}
+							<div class="carousel-item active w-100">
+								<div class="row">
+									<div class="col-2"></div>
+									<div class="col-8">
+										<div class="card mb-3">
+											<div class="row g-0">
+												<div class="col-6">
+													<img class="img-fluid" src={{films.get_affiche}} alt="poster" style="height : 600px; object-fit: cover;">
+												</div>
+												<div class="col-6 mt-5 text-center">
+													<div class="card-body">
+														<h5 class="card-title">
+															{{films.get_title}}
+															({{films.get_annee}})
+														</h5>
+													</div>
+													<p class="card-text">Acteurs :</p>
+													{% for role in films.get_tabRoles %}
+														{{role.get_personnage}}
+														:
+														{{role.get_actor.get_nomActor}}
+														{{role.get_actor.get_prenomActor}}
+														<br>
+													{% endfor %}
+												</div>
+											</div>
 										</div>
-										<div class="card" style="width: 35rem;">
-											<img src={{films.get_affiche}} alt="poster"/></div>
 									</div>
-								{% else %}
-									<div class="carousel-item">
-										<div class="card-titre">
-											<h5 class="card-title">{{films.get_title}}
-												({{films.get_annee}})
-											</h5><br>
-										</div>
-										<div class="card" style="width: 35rem;">
-											<img src={{films.get_affiche}} alt="poster"/>
+									<div class="col-2"></div>
+								</div>
+							</div>
+						{% else %}
+							<div class="carousel-item w-100">
+								<div class="row">
+									<div class="col-2"></div>
+									<div class="col-8">
+										<div class="card mb-3">
+											<div class="row g-0">
+												<div class="col-6">
+													<img class="img-fluid" src={{films.get_affiche}} alt="poster" style="height : 600px; object-fit: cover;">
+												</div>
+												<div class="col-6 mt-5 text-center">
+													<div class="card-body">
+														<h5 class="card-title">
+															{{films.get_title}}
+															({{films.get_annee}})
+														</h5>
+													</div>
+													<p class="card-texts">Acteurs :</p>
+													{% for role in films.get_tabRoles %}
+														{{role.get_personnage}}
+														:
+														{{role.get_actor.get_nomActor}}
+														{{role.get_actor.get_prenomActor}}
+														<br>
+													{% endfor %}
+												</div>
+											</div>
 										</div>
 									</div>
-
-								{% endif %}
-
-							{% endfor %}
-						</div>
-					</div>
-					<<<<<<<HEAD<buttonclass="carousel-control-prev"type="button"data-bs-target="#carouselExampleControls"data-bs-slide="prev"><spanclass="btnPrec"aria-hidden="true">Previous</span><spanclass="visually-hidden"></span></button><buttonclass="carousel-control-next"type="button"data-bs-target="#carouselExampleControls"data-bs-slide="next"><spanclass="btnSuiv"aria-hidden="true">Next</span><spanclass="visually-hidden"></span></button></form>=======<buttonclass="carousel-control-prev"type="button"data-bs-target="#carouselExampleControls"data-bs-slide="prev"><spanstyle="color:black;font-weight:bold;"aria-hidden="true">Previous</span><spanclass="visually-hidden">Previous</span></button><buttonclass="carousel-control-next"type="button"data-bs-target="#carouselExampleControls"data-bs-slide="next"><spanstyle="color:black;font-weight:bold;"aria-hidden="true">Next</span><spanclass="visually-hidden">Next</span></button></div>>> {# Des boutons du carousel #} {# <span class="carousel-control-prev-icon" aria-hidden="true"></span> #} {# <i class="bi bi-arrow-left-circle" style="color:black; font-size=64px"></i> #} {# <i class="bi bi-arrow-right-circle" style="color:black;"></i> #} {# <span class="carousel-control-next-icon" aria-hidden="true"></span> #}>>>>> aee09c3d951f639b89c9bc1035185f142bf731a1
+								</div>
+							</div>
+						{% endif %}
+					{% endfor %}
 				</div>
+				<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+					<span style="color:black; font-weight:bold;" aria-hidden="true">
+						Previous</span>
+					<span class="visually-hidden">Previous</span>
+				</button>
+				<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+					<span style="color:black; font-weight:bold;" aria-hidden="true">Next</span>
+					<span class="visually-hidden">Next</span>
+				</button>
 			</div>
 		</div>
+	</div>
+</div>

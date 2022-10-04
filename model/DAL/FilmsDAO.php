@@ -40,7 +40,6 @@ class FilmsDAO extends Dao
             // // var_dump($films);
 
         }
-        print_r($tabfilms);
         return $tabfilms;
     }
 
