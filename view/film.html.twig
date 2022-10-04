@@ -13,10 +13,13 @@
 			<form action='film' method='POST'>
 				<input name='search' type="text" id="search" placeholder=" Search">
 				<input type="submit" name='Rechercher' id='recherche' value='Rechercher'><br>
+			</form>
+			<div class="row"></div>
 
+			<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+				<div class="carousel-inner">
 
-				<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-					<div class="carousel-inner">
+					{% for film in allFilms %}
 
 						{% for films in allFilms %}
 							{% if loop.first %}
@@ -46,16 +49,7 @@
 							{% endfor %}
 						</div>
 					</div>
-					<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-						<span class="btnPrec" aria-hidden="true">Previous</span>
-						<span class="visually-hidden"></span>
-					</button>
-
-					<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-						<span class="btnSuiv" aria-hidden="true">Next</span>
-						<spanclass="visually-hidden"></span>
-					</button>
-				</form>
+					<<<<<<<HEAD<buttonclass="carousel-control-prev"type="button"data-bs-target="#carouselExampleControls"data-bs-slide="prev"><spanclass="btnPrec"aria-hidden="true">Previous</span><spanclass="visually-hidden"></span></button><buttonclass="carousel-control-next"type="button"data-bs-target="#carouselExampleControls"data-bs-slide="next"><spanclass="btnSuiv"aria-hidden="true">Next</span><spanclass="visually-hidden"></span></button></form>=======<buttonclass="carousel-control-prev"type="button"data-bs-target="#carouselExampleControls"data-bs-slide="prev"><spanstyle="color:black;font-weight:bold;"aria-hidden="true">Previous</span><spanclass="visually-hidden">Previous</span></button><buttonclass="carousel-control-next"type="button"data-bs-target="#carouselExampleControls"data-bs-slide="next"><spanstyle="color:black;font-weight:bold;"aria-hidden="true">Next</span><spanclass="visually-hidden">Next</span></button></div>>> {# Des boutons du carousel #} {# <span class="carousel-control-prev-icon" aria-hidden="true"></span> #} {# <i class="bi bi-arrow-left-circle" style="color:black; font-size=64px"></i> #} {# <i class="bi bi-arrow-right-circle" style="color:black;"></i> #} {# <span class="carousel-control-next-icon" aria-hidden="true"></span> #}>>>>> aee09c3d951f639b89c9bc1035185f142bf731a1
+				</div>
 			</div>
 		</div>
-	</div>

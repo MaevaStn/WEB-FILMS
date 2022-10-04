@@ -94,20 +94,10 @@ class Film
         $this->tabRoles = $tabRoles;
     }
 
-    //méthode pour ajouter un rôle :
-    //tabRoles, tableau de role(liste de rôle)
+    // //méthode pour ajouter un rôle :
+
     public function addRole(Role $roles)
     {
         $this->tabRoles[] = $roles;
-    }
-
-    // je récupére :
-    public function getRole($roles = '')
-    {
-        foreach ($this->tabRoles as $key => $value) {
-            if ($value->getnom() == $roles) {
-                return $value;
-            }
-        }
     }
 }
