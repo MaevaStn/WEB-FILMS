@@ -7,7 +7,7 @@ class Role
     // acteur.php ?
     private $actor;
     private $personnage;
-    private $role;
+    private $idRole;
 
 
     public function __construct($actor = null, $personnage = null, $idRole = null)
