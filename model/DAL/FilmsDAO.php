@@ -6,33 +6,44 @@ class FilmsDAO extends Dao
 {
     //Récupérer :
     public function getAll($recherche)
-
     {
-        $queryFilms = $this->_bdd->prepare("SELECT * FROM films WHERE UPPER(titre) like :recherche");
-        $queryFilms->execute(array(':recherche' => "%" . strtoupper($recherche) . "%"));
-        $films = array();
 
+        // SELECT * FROM films INNER JOIN role INNER JOIN acteurs ON acteurs.idActeur = role.idActeur WHERE role.idFilm = films.idFilm AND UPPER(titre) LIKE UPPER('m%')
+
+        $queryFilms = $this->_bdd->prepare("SELECT * FROM films INNER JOIN role ON role.idFilm = films.idFilm  INNER JOIN acteurs ON acteurs.idActeur = role.idActeur WHERE UPPER(titre) LIKE UPPER(:recherche) ORDER BY films.idFilm ASC");
+        $queryFilms->execute(array(':recherche' => $recherche . "%"));
+        // print_r($queryFilms);
+        // $acteurs = array();
+        $tabfilms = array();
+        // $roles = array();
+        // print_r($dataFilms);
+        $idFilm = 0;
         while ($dataFilms = $queryFilms->fetch()) {
 
-            $films[] = new Film($dataFilms['idFilm'], $dataFilms['titre'], $dataFilms["realisateur"], $dataFilms['affiche'], $dataFilms['annee']);
+
+            if ($idFilm != $dataFilms['idFilm']) {
+                $film = new Film($dataFilms['idFilm'], $dataFilms['titre'], $dataFilms["realisateur"], $dataFilms['affiche'], $dataFilms['annee'], null);
+                $acteur = new Acteur($dataFilms["idActeur"], $dataFilms["nom"], $dataFilms["prenom"]);
+                $role = new Role($acteur, $dataFilms["personnage"], $dataFilms["idRole"]);
+                $film->addRole($role);
+                $tabfilms[] = $film;
+            } else {
+                $film = $tabfilms[array_key_last($tabfilms)];
+                $acteur = new Acteur($dataFilms["idActeur"], $dataFilms["nom"], $dataFilms["prenom"]);
+                $role = new Role($acteur, $dataFilms["personnage"], $dataFilms["idRole"]);
+                $film->addRole($role);
+            }
+            $idFilm = $dataFilms['idFilm'];
+            // print_r($dataFilms);
+
+
+            // // var_dump($films);
+
         }
-        //print_r($films);
-        return $films;
+        print_r($tabfilms);
+        return $tabfilms;
     }
 
-    // En cours de tests/élaboration :
-    // public function getRoles(){    
-    // while ($dataFilms = $queryFilms->fetch()) {
-    //  $queryRoles = $this->_bdd->prepare("SELECT * FROM acteurs INNER JOIN role ON acteurs.idActeur = role.idRole");
-    // $queryRoles->execute();
-    // //  tableau roles :
-    // $roles = array();
-    //  while ($dataRoles = $queryRoles->fetch()) {
-
-    // $roles = new Role($dataRoles['personnage'], $dataRoles['idRole'].............;
-    //     }
-    // return $roles;
-    // }
 
 
 
@@ -61,6 +72,27 @@ class FilmsDAO extends Dao
 }
 
 
+
+
+
 // public function addRole(){
     
 // }
+
+
+
+        // while ($dataFilms = $queryFilms->fetch()) {
+        //     $queryRoles = $this->_bdd->prepare("SELECT * FROM acteurs INNER JOIN role ON acteurs.idActeur = role.idActeur WHERE role.idFilm=films.idFilm");
+        //     $queryRoles->execute();
+        //     $roles = array();
+        //     // $roles[] = new Role($dataFilms["$acteur,"])
+        //     print_r($roles);
+
+         // while ($data = $queryFilms->fetch()) {
+        // $acteurs[] = new Acteur($dataFilms["idActeur"], $dataFilms["nom"], $dataFilms["prenom"]);
+        // //     // print_r($acteurs);
+        // $roles[] = new Role($dataFilms["personnage"], $dataFilms["idRole"], $acteurs);
+        // print_r($roles);
+        //     foreach ($roles as $key => $value) {
+        //     }
+        // }

@@ -13,30 +13,35 @@
 			<form action='film' method='POST'>
 				<input name='search' type="text" id="search" placeholder=" Search">
 				<input type="submit" name='Rechercher' id='recherche' value='Rechercher'><br>
+			</form>
+			<div class="row"></div>
 
+			<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+				<div class="carousel-inner">
 
-				<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-					<div class="carousel-inner">
+					{% for film in allFilms %}
 
-						{% for films in allFilms %}
-							{% if loop.first %}
-								<div class="carousel-item active">
-									<div class="card-titre">
-										<h5 class="card-title">{{films.get_title}}
-											({{films.get_annee}})</h5><br>
-									</div>
-									<div class="card" style="width: 35rem;">
-										<img src={{films.get_affiche}} alt="poster"/></div>
+						{% if loop.first %}
+
+							<div class="carousel-item active">
+								<div class="card-titre">
+									<h5 class="card-title">{{film.get_title}}
+										({{film.get_annee}})</h5><br>
 								</div>
+								<div class="card" style="width: 35rem;">
+									<img src={{film.get_affiche}} alt="poster"/></div>
+								{% for role in film.get_tabRoles %}
+								</div>
+
 							{% else %}
 								<div class="carousel-item">
 									<div class="card-titre">
-										<h5 class="card-title">{{films.get_title}}
-											({{films.get_annee}})
+										<h5 class="card-title">{{film.get_title}}
+											({{film.get_annee}})
 										</h5><br>
 									</div>
 									<div class="card" style="width: 35rem;">
-										<img src={{films.get_affiche}} alt="poster"/>
+										<img src={{film.get_affiche}} alt="poster"/>
 									</div>
 								</div>
 
@@ -44,17 +49,20 @@
 
 						{% endfor %}
 					</div>
+					{# Des boutons du carousel #}
+					<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+						{# <span class="carousel-control-prev-icon" aria-hidden="true"></span> #}
+						{# <i class="bi bi-arrow-left-circle" style="color:black; font-size=64px"></i> #}
+							<span style="color:black; font-weight:bold;" aria-hidden="true"> Previous</span>
+						<span class="visually-hidden">Previous</span>
+					</button>
+					<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+						<span style="color:black; font-weight:bold;" aria-hidden="true">Next</span>
+						{# <i class="bi bi-arrow-right-circle" style="color:black;"></i> #}
+						{# <span class="carousel-control-next-icon" aria-hidden="true"></span> #}
+						<span class="visually-hidden">Next</span>
+					</button>
 				</div>
-				<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-					<span class="btnPrec" aria-hidden="true">Previous</span>
-					<span class="visually-hidden"></span>
-				</button>
-
-				<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-					<span class="btnSuiv" aria-hidden="true">Next</span>
-					<spanclass="visually-hidden"></span>
-				</button>
-			</form>
+			</div>
 		</div>
 	</div>
-</div>
