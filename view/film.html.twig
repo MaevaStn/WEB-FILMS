@@ -22,39 +22,40 @@
 							{% if loop.first %}
 								<div class="carousel-item active">
 									<div class="card-titre">
-										<h5 class="card-title">{{films.get_title}}
-											({{films.get_annee}})</h5><br>
+										<div class="row">
+											<h5 class="card-title">{{films.get_title}}
+												({{films.get_annee}})</h5><br>
+										</div>
+										<div class="card" style="width: 35rem;">
+											<img src={{films.get_affiche}} alt="poster"/></div>
 									</div>
-									<div class="card" style="width: 35rem;">
-										<img src={{films.get_affiche}} alt="poster"/></div>
-								</div>
-							{% else %}
-								<div class="carousel-item">
-									<div class="card-titre">
-										<h5 class="card-title">{{films.get_title}}
-											({{films.get_annee}})
-										</h5><br>
+								{% else %}
+									<div class="carousel-item">
+										<div class="card-titre">
+											<h5 class="card-title">{{films.get_title}}
+												({{films.get_annee}})
+											</h5><br>
+										</div>
+										<div class="card" style="width: 35rem;">
+											<img src={{films.get_affiche}} alt="poster"/>
+										</div>
 									</div>
-									<div class="card" style="width: 35rem;">
-										<img src={{films.get_affiche}} alt="poster"/>
-									</div>
-								</div>
 
-							{% endif %}
+								{% endif %}
 
-						{% endfor %}
+							{% endfor %}
+						</div>
 					</div>
-				</div>
-				<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-					<span class="btnPrec" aria-hidden="true">Previous</span>
-					<span class="visually-hidden"></span>
-				</button>
+					<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+						<span class="btnPrec" aria-hidden="true">Previous</span>
+						<span class="visually-hidden"></span>
+					</button>
 
-				<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-					<span class="btnSuiv" aria-hidden="true">Next</span>
-					<spanclass="visually-hidden"></span>
-				</button>
-			</form>
+					<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+						<span class="btnSuiv" aria-hidden="true">Next</span>
+						<spanclass="visually-hidden"></span>
+					</button>
+				</form>
+			</div>
 		</div>
 	</div>
-</div>

@@ -30,7 +30,7 @@ class UsersDAO extends Dao
 
     public function get_one($idUser)
     {
-        $query = $this->_bdd->prepare('SELECT * FROM user WHERE user.idUser = :idUser')->fetch(PDO::FETCH_ASSOC);
+        $query = $this->_bdd->prepare('SELECT * FROM user WHERE user.idUser = :idUser');
         $query->execute(array(':idUser' => $idUser));
         $data = $query->fetch();
         $user = new User($data['idUser'], $data['userName'], $data['email'], $data['password']);
