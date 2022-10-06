@@ -7,7 +7,7 @@ class Film
     private $realisateur;
     private $affiche;
     private $annee;
-    // liste de toutes les rôles du film sous forme de tableau :
+    // liste des rôles du film sous forme de tableau :
     private $tabRoles = array();
 
     public function __construct($idFilm = null, $title = null, $realisateur = null, $affiche = null, $annee = null, $tabRoles = [])
@@ -95,7 +95,6 @@ class Film
     }
 
     // //méthode pour ajouter un rôle :
-
     public function addRole(Role $roles)
     {
         $this->tabRoles[] = $roles;

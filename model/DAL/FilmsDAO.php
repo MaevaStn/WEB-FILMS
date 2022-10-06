@@ -1,33 +1,29 @@
 <?php
-
-// @author Elise
+// @author Maeva/Elise
 
 class FilmsDAO extends Dao
 {
     //Récupérer :
     public function getAll($recherche)
     {
-
-        // SELECT * FROM films INNER JOIN role INNER JOIN acteurs ON acteurs.idActeur = role.idActeur WHERE role.idFilm = films.idFilm AND UPPER(titre) LIKE UPPER('m%')
-
+        //SQL : SELECT * FROM films INNER JOIN role INNER JOIN acteurs ON acteurs.idActeur = role.idActeur WHERE role.idFilm = films.idFilm AND UPPER(titre) LIKE UPPER('M%')
+        // définir BDD :
         $queryFilms = $this->_bdd->prepare("SELECT * FROM films INNER JOIN role ON role.idFilm = films.idFilm  INNER JOIN acteurs ON acteurs.idActeur = role.idActeur WHERE UPPER(titre) LIKE UPPER(:recherche) ORDER BY films.idFilm ASC");
+        // permet de rechercher toutes les lignes de “colonne” qui commence par (une lettre définie) / mais dans notre cas, en fonction de ($recherche) :
         $queryFilms->execute(array(':recherche' => $recherche . "%"));
-        // print_r($queryFilms);
-        // $acteurs = array();
         $tabfilms = array();
-        // $roles = array();
-        // print_r($dataFilms);
+
         $idFilm = 0;
         while ($dataFilms = $queryFilms->fetch()) {
-
-
             if ($idFilm != $dataFilms['idFilm']) {
                 $film = new Film($dataFilms['idFilm'], $dataFilms['titre'], $dataFilms["realisateur"], $dataFilms['affiche'], $dataFilms['annee'], null);
                 $acteur = new Acteur($dataFilms["idActeur"], $dataFilms["nom"], $dataFilms["prenom"]);
                 $role = new Role($acteur, $dataFilms["personnage"], $dataFilms["idRole"]);
+                // j'appellle addRole (), ( issu de la classe Film ds BO) et je place en paramètre ($role) (ci-dessus):
                 $film->addRole($role);
                 $tabfilms[] = $film;
             } else {
+                // array_key_last — Récupère la dernière clé d'un tableau
                 $film = $tabfilms[array_key_last($tabfilms)];
                 $acteur = new Acteur($dataFilms["idActeur"], $dataFilms["nom"], $dataFilms["prenom"]);
                 $role = new Role($acteur, $dataFilms["personnage"], $dataFilms["idRole"]);
@@ -35,63 +31,43 @@ class FilmsDAO extends Dao
             }
             $idFilm = $dataFilms['idFilm'];
             // print_r($dataFilms);
-
-
             // // var_dump($films);
 
         }
         return $tabfilms;
     }
 
-
-
-
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public function add($data)
     {
-
-        $valeurs = ['titre' => $data->get_title(), 'affiche' => $data->get_affiche(), 'annee' => $data->get_annee()];
-        $requete = $this->_bdd->prepare("SELECT titre, affiche, annee FROM films");
-        $requete->execute();
-        if (!$requete->execute($valeurs)) {
-            // print_r($requete->errorInfo());
-            return false;
-        } else {
-            return true;
-        }
     }
-
-
-
 
     public function get_one($id)
     {
     }
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+// Elise :
 
+// Partie pour titre, année, affiche :
 
+//Récupérer :
+//  public function getAll($recherche)
+//  {
+// LIKE est utilisé dans la clause WHERE des requêtes SQL. Ce mot-clé permet d’effectuer une recherche sur un modèle particulier. 
+// Il est par exemple possible de rechercher les enregistrements dont la valeur d’une colonne commence par telle ou telle lettre. 
 
-// public function addRole(){
-    
-// }
+//      $queryFilms = $this->_bdd->prepare("SELECT * FROM films WHERE UPPER(titre) like :recherche");
+// (ce modèle est utilisé pour rechercher tous les enregistrement qui utilisent le caractère “ ”.)
+//      $queryFilms->execute(array(':recherche' => "%" . strtoupper($recherche) . "%"));
+//      $films = array();
 
+//      while ($dataFilms = $queryFilms->fetch()) {
 
-
-        // while ($dataFilms = $queryFilms->fetch()) {
-        //     $queryRoles = $this->_bdd->prepare("SELECT * FROM acteurs INNER JOIN role ON acteurs.idActeur = role.idActeur WHERE role.idFilm=films.idFilm");
-        //     $queryRoles->execute();
-        //     $roles = array();
-        //     // $roles[] = new Role($dataFilms["$acteur,"])
-        //     print_r($roles);
-
-         // while ($data = $queryFilms->fetch()) {
-        // $acteurs[] = new Acteur($dataFilms["idActeur"], $dataFilms["nom"], $dataFilms["prenom"]);
-        // //     // print_r($acteurs);
-        // $roles[] = new Role($dataFilms["personnage"], $dataFilms["idRole"], $acteurs);
-        // print_r($roles);
-        //     foreach ($roles as $key => $value) {
-        //     }
-        // }
+//          $films[] = new Film($dataFilms['idFilm'], $dataFilms['titre'], $dataFilms["realisateur"], $dataFilms['affiche'], $dataFilms['annee']);
+//      }
+//      return $films;
+//  }

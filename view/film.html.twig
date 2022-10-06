@@ -1,3 +1,4 @@
+{# @author : Maeva/Elise #}
 <div id="film" class='container'>
 	<div class='row w-100 '>
 		<div class="col text-center mt-5 mb-3">
@@ -5,6 +6,7 @@
 			<div>
 				<p>Saisir un mot du titre</p>
 			</div>
+			{# pour recevoir données formulaire sur serveur : #}
 			<form action='film' method='POST' class="d-flex justify-content-center">
 				<input name='search' type="text" id="search" placeholder=" Search" class="form-control w-25 me-1">
 				<input type="submit" name='Rechercher' id='recherche' value='Rechercher' class="btn btn-secondary"><br>
@@ -17,8 +19,10 @@
 		<div class="col">
 			<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
 				<div class="carousel-inner">
-					{% for films in allFilms %}
+					{% for film in allFilms %}
+						{# si, 1ère itération : #}
 						{% if loop.first %}
+							{# 1ère itération contient class carrousel item active : #}
 							<div class="carousel-item active w-100">
 								<div class="row">
 									<div class="col-2"></div>
@@ -26,17 +30,17 @@
 										<div class="card mb-3">
 											<div class="row g-0">
 												<div class="col-6">
-													<img class="img-fluid" src={{films.get_affiche}} alt="poster" style="height : 600px; object-fit: cover;">
+													<img class="img-fluid" src={{film.get_affiche}} alt="poster" style="height : 600px; object-fit: cover;">
 												</div>
 												<div class="col-6 mt-5 text-center">
 													<div class="card-body">
 														<h5 class="card-title">
-															{{films.get_title}}
-															({{films.get_annee}})
+															{{film.get_title}}
+															({{film.get_annee}})
 														</h5>
 													</div>
 													<p class="card-text">Acteurs :</p>
-													{% for role in films.get_tabRoles %}
+													{% for role in film.get_tabRoles %}
 														{{role.get_personnage}}
 														:
 														{{role.get_actor.get_nomActor}}
@@ -58,17 +62,17 @@
 										<div class="card mb-3">
 											<div class="row g-0">
 												<div class="col-6">
-													<img class="img-fluid" src={{films.get_affiche}} alt="poster" style="height : 600px; object-fit: cover;">
+													<img class="img-fluid" src={{film.get_affiche}} alt="poster" style="height : 600px; object-fit: cover;">
 												</div>
 												<div class="col-6 mt-5 text-center">
 													<div class="card-body">
 														<h5 class="card-title">
-															{{films.get_title}}
-															({{films.get_annee}})
+															{{film.get_title}}
+															({{film.get_annee}})
 														</h5>
 													</div>
 													<p class="card-texts">Acteurs :</p>
-													{% for role in films.get_tabRoles %}
+													{% for role in film.get_tabRoles %}
 														{{role.get_personnage}}
 														:
 														{{role.get_actor.get_nomActor}}

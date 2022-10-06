@@ -4,7 +4,6 @@
 
 class Role
 {
-    // acteur.php ?
     private $actor;
     private $personnage;
     private $idRole;
