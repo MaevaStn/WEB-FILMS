@@ -1,20 +1,24 @@
 <?php
-
+// Inscription nouvel utilisateur 
 if (isset($_POST['mailInscr']) and isset($_POST['passInscr']) and isset($_POST['passConf']) and isset($_POST['userName'])) {
     $user =  new UsersDAO();
     $newUser = $user->get_user($_POST['mailInscr']);
-
-    if ($newUser == null) { // si le user n'existe pas dans la bdd
+    // Si le user n'existe pas dans la bdd
+    if ($newUser == null) {
+        // Vérification de la correspondance des password
         if ($_POST['passInscr'] == $_POST['passConf']) {
-            $newAccount = new User(null, $_POST['userName'], $_POST['mailInscr'], $_POST['passInscr']); // ajout new user dans la bdd
+            $newAccount = new User(null, $_POST['userName'], $_POST['mailInscr'], password_hash($_POST['passInscr'], PASSWORD_DEFAULT)); // ajout new user dans la bdd
             $user->add($newAccount);
             echo $twig->render('inscription.html.twig', ['requete' => "added"]);
         } else {
+            // Inexactitude des password
             echo $twig->render('inscription.html.twig', ['pass' => "invalide"]);
         }
     } else {
-        echo $twig->render('inscription.html.twig', ['status' => "existe"]); // user déjà dans la bdd
+        // User déjà dans la bdd
+        echo $twig->render('inscription.html.twig', ['status' => "existe"]);
     }
 } else {
+    // Affichage form inscription
     echo $twig->render('inscription.html.twig');
 }

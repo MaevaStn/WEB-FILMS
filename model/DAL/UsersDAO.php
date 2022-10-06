@@ -15,7 +15,7 @@ class UsersDAO extends Dao
         return ($user);
     }
 
-
+    //ajouter un user
     public function add($data)
     {
         $valeurs = ['idUser' => $data->get_idUser(), 'userName' => $data->get_userName(), 'email' => $data->get_email(), 'password' => $data->get_password()];
@@ -28,6 +28,7 @@ class UsersDAO extends Dao
         }
     }
 
+    //obtenir plus d'information
     public function get_one($idUser)
     {
         $query = $this->_bdd->prepare('SELECT * FROM user WHERE user.idUser = :idUser');
@@ -37,6 +38,7 @@ class UsersDAO extends Dao
         return ($user);
     }
 
+    //obtenir plus d'information
     public function get_user($mail)
     {
         $query = $this->_bdd->prepare('SELECT * FROM user WHERE user.email = :email');

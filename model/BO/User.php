@@ -15,8 +15,6 @@ class User
         $this->userPass = $userPass;
     }
 
-    // GETTER //
-
     public function get_idUser()
     {
         return $this->idUser;
@@ -37,13 +35,10 @@ class User
         return $this->userPass;
     }
 
-    // SETTER //
-
     public function set_userName($userName)
     {
         $this->userName = $userName;
     }
-
 
     public function set_email($userMail)
     {

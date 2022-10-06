@@ -7,22 +7,20 @@
 						<h2 class="col text-center pt-1  mb-4">Connexion</h2>
 					</div<divclass="col-12mb-2mt-4m-auto">
 					{% if pass is defined %}
-						<label class="form-label text-danger">Email ou mot de passe incorrect</label>
+						<label class="form-label">Email ou mot de passe incorrect</label>
 					{% endif %}
 					{% if mail is not defined %}
 						<input name="mail" type="email" class="form-control mb-2" placeholder="mail">
 					{% else %}
-						<input value={{mail}} name="mail" type="email" class="form-control mb-2" placeholder="Email">
+						<input name="mail" type="email" class="form-control mb-2" placeholder="Email">
 					{% endif %}
 					<input name="pass" type="password" class="form-control mb-1" placeholder="Password">
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-11 m-auto form-check">
-					<input name="remember" class="form-check-input mb-2" type="checkbox" value="rememberMe" id="Check">
-					<label class="form-check-label mb-1" for="flexCheckDefault">
-						Remember me
-					</label>
+					<input name="remember" class="form-check-input mb-2" type="checkbox" value="remember">
+					<label class="form-check-label mb-1" for="flexCheckDefault">Remember me</label>
 				</div>
 			</div>
 			<div class="row">
@@ -36,10 +34,13 @@
 				</div>
 			</div>
 		</div>
+	</form>
+{% else %}
+	<div class="container text-center">
+		<div class="row">
+			<div class="col-12 m-auto text-center">
+				<label class="form-label">Vous êtes connecté</label>
+			</div>
+		</div>
 	</div>
-</form></div>{% else %}<div class="container text-center">
-<div class="row">
-	<div class="col-12 m-auto text-center">
-		<label class="form-label">Vous êtes connecté</label>
-	</div>
-</div></div>{% endif %}
+{% endif %}
