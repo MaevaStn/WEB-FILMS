@@ -4,6 +4,7 @@ if (isset($_SESSION['mail'])) {
     // Déconnexion
     if (isset($_POST['logout'])) {
         session_destroy();
+        // rafraichir la page :
         header('location:user');
     } else {
         // Affichage du message de connexion

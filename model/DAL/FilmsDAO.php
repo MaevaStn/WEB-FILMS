@@ -15,9 +15,9 @@ class FilmsDAO extends Dao
 
         $idFilm = 0;
         // parcours du resultat de la requete ligne apres ligne :
-        // sachant qu'avec le order by les films se suivent les uns apres les autres.
+        // sachant qu'avec le (order by) les films se suivent les uns apres les autres.
         while ($dataFilms = $queryFilms->fetch()) {
-            // detection chg film par idfilm :
+            // detection changement film par idfilm :
             if ($idFilm != $dataFilms['idFilm']) {
                 $film = new Film($dataFilms['idFilm'], $dataFilms['titre'], $dataFilms["realisateur"], $dataFilms['affiche'], $dataFilms['annee'], null);
                 $acteur = new Acteur($dataFilms["idActeur"], $dataFilms["nom"], $dataFilms["prenom"]);
@@ -27,9 +27,9 @@ class FilmsDAO extends Dao
                 $tabfilms[] = $film;
             } else {
                 // array_key_last — Récupère la dernière clé d'un tableau, 
-                // récupèere le dernier film stocké dans $tabFilm ds le but de lui ajouter un role et un acteur
+                // récupère le dernier film stocké dans $tabFilm dans le but de lui ajouter un role et un acteur
                 $film = $tabfilms[array_key_last($tabfilms)];
-                var_dump($film);
+                // var_dump($film);
                 $acteur = new Acteur($dataFilms["idActeur"], $dataFilms["nom"], $dataFilms["prenom"]);
                 $role = new Role($acteur, $dataFilms["personnage"], $dataFilms["idRole"]);
                 $film->addRole($role);
