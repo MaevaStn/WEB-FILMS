@@ -1,7 +1,9 @@
 <?php
 // Inscription nouvel utilisateur 
+// passConf passdeconfirmation
 if (isset($_POST['mailInscr']) and isset($_POST['passInscr']) and isset($_POST['passConf']) and isset($_POST['userName'])) {
     $user =  new UsersDAO();
+    // j'appelle get_user() av mail inscr en param
     $newUser = $user->get_user($_POST['mailInscr']);
     // Si le user n'existe pas dans la bdd
     if ($newUser == null) {

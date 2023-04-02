@@ -95,6 +95,7 @@ class Film
     }
 
     // //méthode pour ajouter un rôle :
+    // param class Role/$rôles
     public function addRole(Role $roles)
     {
         $this->tabRoles[] = $roles;

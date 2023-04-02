@@ -17,25 +17,33 @@ class FilmsDAO extends Dao
         // parcours du resultat de la requete ligne apres ligne :
         // sachant qu'avec le (order by) les films se suivent les uns apres les autres.
         while ($dataFilms = $queryFilms->fetch()) {
-            // detection changement film par idfilm :
+            // var_dump($dataFilms); retourne tab de toutes les données de tous les films
+
+            // detection film par idfilm/ :
+
             if ($idFilm != $dataFilms['idFilm']) {
                 $film = new Film($dataFilms['idFilm'], $dataFilms['titre'], $dataFilms["realisateur"], $dataFilms['affiche'], $dataFilms['annee'], null);
                 $acteur = new Acteur($dataFilms["idActeur"], $dataFilms["nom"], $dataFilms["prenom"]);
+                // ds acteur j'ai une instance de la classe acteur, $role contient  une instance de la classe acteur, 
                 $role = new Role($acteur, $dataFilms["personnage"], $dataFilms["idRole"]);
                 // j'appellle addRole (), ( issu de la classe Film ds BO) et je place en paramètre ($role) (ci-dessus):
+                // et j'ajoute le role ds le film que je viens de récupérer
                 $film->addRole($role);
                 $tabfilms[] = $film;
+                // var_dump($tabfilms);
             } else {
                 // array_key_last — Récupère la dernière clé d'un tableau, 
                 // récupère le dernier film stocké dans $tabFilm dans le but de lui ajouter un role et un acteur
                 $film = $tabfilms[array_key_last($tabfilms)];
+                // var_dump(array_key_last($tabfilms));
                 // var_dump($film);
                 $acteur = new Acteur($dataFilms["idActeur"], $dataFilms["nom"], $dataFilms["prenom"]);
                 $role = new Role($acteur, $dataFilms["personnage"], $dataFilms["idRole"]);
                 $film->addRole($role);
+                // var_dump($film);
             }
+
             $idFilm = $dataFilms['idFilm'];
-            // var_dump($idFilm);
         }
         return $tabfilms;
     }
